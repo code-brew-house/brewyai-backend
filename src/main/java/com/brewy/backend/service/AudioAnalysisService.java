@@ -9,6 +9,8 @@ import com.brewy.backend.model.AudioAnalysisResponse;
 import com.brewy.backend.model.TonalityResult;
 import com.brewy.backend.service.AudioProcessingService.AudioInfo;
 
+import java.util.Optional;
+
 @Service
 public class AudioAnalysisService {
 
@@ -34,7 +36,8 @@ public class AudioAnalysisService {
         // Analyze tonality using Claude
         TonalityResult tonalityResult = anthropicService.analyzeTonality(
                 audioInfo,
-                request.getClientId()
+                request.getClientId(),
+                Optional.of(request.getCustomPrompt())
         );
 
         // Create the response

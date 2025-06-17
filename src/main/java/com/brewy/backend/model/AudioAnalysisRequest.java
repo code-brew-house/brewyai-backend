@@ -10,5 +10,6 @@ public class AudioAnalysisRequest {
 
     private MultipartFile audioFile;
     private String clientId;
+    private String customPrompt;
 
 }

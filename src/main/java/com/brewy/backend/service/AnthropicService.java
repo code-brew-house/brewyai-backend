@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.Message;
@@ -54,7 +55,8 @@ public class AnthropicService {
      * @return Tonality analysis results
      */
     public TonalityResult analyzeTonality(AudioInfo audioInfo,
-                                          String clientId) {
+                                          String clientId,
+                                          Optional<String> customPrompt) {
         try {
             // Create a modified prompt based on the parameters
             String systemPrompt = getTonality(clientId);

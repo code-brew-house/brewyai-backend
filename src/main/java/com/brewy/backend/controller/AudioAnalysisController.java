@@ -24,12 +24,15 @@ public class AudioAnalysisController {
     @PostMapping(value = "/analyze", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<AudioAnalysisResponse> analyzeAudio(
             @RequestParam("file") MultipartFile audioFile,
-            @RequestParam(value = "clientId") String clientId) {
+            @RequestParam(value = "clientId") String clientId,
+            @RequestParam(value = "customPrompt", required = false) String customPrompt) {
 
         // Create request object
         AudioAnalysisRequest request = new AudioAnalysisRequest();
         request.setAudioFile(audioFile);
         request.setClientId(clientId);
+        request.setCustomPrompt(customPrompt);
+
         // Process the request
         AudioAnalysisResponse response = audioAnalysisService.analyzeAudio(request);
 
