@@ -76,6 +76,11 @@ public class AnthropicService {
                     audioInfo.getBase64Content()
             );
 
+            //Append custom prompt to system prompt if not empty
+            if (customPrompt.isPresent()) {
+                systemPrompt += "\n\nAdditional Instructions: " + customPrompt.get();
+            }
+
             SystemMessage systemMessage = new SystemMessage(systemPrompt);
             UserMessage userMessage = new UserMessage(audioInfoText);
             List<Message> messages = Arrays.asList(systemMessage, userMessage);
